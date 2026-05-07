@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WoonWijzerWinkel Kiosk — Low Fidelity Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:#E8E8E8;color:#1A1A1A;overflow:hidden;height:100vh;}
+
+/* ─── LAYOUT ─── */
+.app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:240px;background:#2D2D2D;color:#fff;overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column;}
+.sidebar-header{padding:16px;border-bottom:1px solid #2D3F2D;}
+.sidebar-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:#BBBBBB;letter-spacing:.5px;text-transform:uppercase;}
+.sidebar-sub{font-size:11px;color:#999999;margin-top:3px;}
+.screen-list{flex:1;padding:8px 0;}
+.screen-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 16px;background:none;border:none;color:#CCCCCC;font-family:'Nunito Sans',sans-serif;font-size:12px;cursor:pointer;text-align:left;transition:background .15s;}
+.screen-btn:hover{background:#2D3F2D;}
+.screen-btn.active{background:#3A3A3A;color:#BBBBBB;}
+.screen-num{width:22px;height:22px;border-radius:50%;border:1.5px solid #555555;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.screen-btn.active .screen-num{background:#444444;border-color:#BBBBBB;color:#fff;}
+.screen-name{line-height:1.3;}
+.screen-group{padding:8px 16px 4px;font-size:10px;font-weight:700;color:#555555;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ─── MAIN ─── */
+.main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;background:#DCDCDC;}
+.kiosk-wrap{display:flex;gap:20px;align-items:flex-start;}
+
+/* ─── DEVICE FRAME ─── */
+.device{width:520px;background:#1A1A1A;border-radius:20px;padding:14px;box-shadow:0 8px 40px rgba(0,0,0,.35);flex-shrink:0;}
+.device-screen{width:100%;background:#fff;border-radius:10px;overflow:hidden;min-height:800px;position:relative;}
+
+/* ─── ANNOTATION PANEL ─── */
+.annotations{width:220px;flex-shrink:0;}
+.ann-card{background:#FFFDE7;border:1.5px solid #F0C040;border-radius:8px;padding:14px;margin-bottom:12px;}
+.ann-title{font-size:11px;font-weight:700;color:#7A6000;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+.ann-text{font-size:11px;color:#5A4800;line-height:1.6;}
+.ann-text li{margin-left:14px;margin-bottom:2px;}
+.ann-diff{background:#EEEEEE;border:1.5px solid #555555;border-radius:8px;padding:14px;margin-bottom:12px;}
+.ann-diff .ann-title{color:#333333;}
+.ann-diff .ann-text{color:#2D2D2D;}
+
+/* ─── WIREFRAME PRIMITIVES ─── */
+.wf-header{background:#444444;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;min-height:54px;}
+.wf-logo{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:#fff;letter-spacing:-.2px;}
+.wf-logo span{color:#BBBBBB;}
+.wf-nav{display:flex;gap:8px;}
+.wf-btn-ghost{padding:5px 12px;border:1.5px solid rgba(255,255,255,.5);border-radius:6px;color:#fff;font-size:11px;font-weight:600;background:none;cursor:pointer;font-family:'Nunito Sans',sans-serif;}
+.wf-btn-ghost:first-child{background:rgba(255,255,255,.1);}
+.wf-content{padding:18px 18px 14px;}
+.wf-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;color:#1A2A1A;margin-bottom:4px;}
+.wf-subtitle{font-size:12px;color:#555;margin-bottom:14px;line-height:1.5;}
+.wf-label{font-size:11px;font-weight:700;color:#333;text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;}
+.wf-input{width:100%;padding:9px 12px;border:2px solid #999;border-radius:6px;font-size:12px;color:#888;background:#FAFAFA;font-family:'Nunito Sans',sans-serif;}
+.wf-input-group{margin-bottom:12px;}
+.wf-row{display:flex;gap:10px;margin-bottom:12px;}
+.wf-row > *{flex:1;}
+.wf-placeholder{background:#D8D8D8;border:1.5px dashed #999;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#666;font-size:11px;font-weight:600;text-align:center;gap:4px;padding:8px;}
+.wf-placeholder .ph-icon{font-size:20px;opacity:.6;}
+.wf-btn-primary{background:#333333;color:#fff;border:2px solid #333333;border-radius:8px;padding:11px 20px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.wf-btn-secondary{background:#fff;color:#444444;border:2px solid #555555;border-radius:8px;padding:11px 20px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.wf-btn-outline{background:#fff;color:#444;border:2px solid #999;border-radius:8px;padding:11px 20px;font-size:12px;font-weight:600;font-family:'Nunito Sans',sans-serif;cursor:pointer;}
+.wf-divider{height:1px;background:#E0E0E0;margin:14px 0;}
+.wf-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1.5px solid #555555;border-radius:20px;font-size:11px;color:#444444;background:#EEEEEE;font-weight:600;margin:2px;}
+.wf-chip-neutral{border-color:#999;color:#444;background:#F0F0F0;}
+.wf-step-bar{display:flex;gap:0;margin-bottom:16px;}
+.wf-step{flex:1;padding:7px 4px;font-size:9px;font-weight:700;text-align:center;border-top:3px solid #D0D0D0;color:#999;text-transform:uppercase;}
+.wf-step.active{border-top-color:#444444;color:#444444;}
+.wf-step.done{border-top-color:#BBBBBB;color:#444444;}
+.wf-card{border:2px solid #CCC;border-radius:10px;padding:12px;background:#fff;margin-bottom:10px;}
+.wf-card-selected{border-color:#555555;background:#EEEEEE;}
+.wf-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.wf-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+.wf-tile{border:2px solid #CCC;border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;background:#fff;}
+.wf-tile:hover{border-color:#555555;}
+.wf-tile .tile-icon{font-size:26px;margin-bottom:6px;}
+.wf-tile .tile-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:#1A2A1A;}
+.wf-tile .tile-desc{font-size:10px;color:#666;margin-top:3px;line-height:1.4;}
+.wf-radio-group{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.wf-radio{padding:8px 14px;border:2px solid #CCC;border-radius:20px;font-size:11px;font-weight:600;color:#444;cursor:pointer;background:#fff;}
+.wf-radio.selected{border-color:#555555;color:#444444;background:#EEEEEE;}
+.wf-footer{padding:12px 18px;border-top:1px solid #E0E0E0;display:flex;justify-content:space-between;align-items:center;background:#FAFAFA;}
+.wf-breadcrumb{font-size:10px;color:#888;margin-bottom:10px;}
+.wf-breadcrumb span{color:#444444;}
+.wf-tag{font-size:10px;padding:2px 8px;background:#EEEEEE;color:#444444;border-radius:4px;font-weight:600;display:inline-block;margin:2px;}
+.wf-annot-note{font-size:9px;color:#F06030;font-style:italic;margin-top:4px;}
+.wf-measurement-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.wf-measure-card{border:2px solid #CCC;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;background:#fff;}
+.wf-measure-card.selected{border-color:#555555;background:#EEEEEE;}
+.wf-measure-card .m-icon{font-size:22px;margin-bottom:4px;}
+.wf-measure-card .m-label{font-size:11px;font-weight:600;color:#333;line-height:1.3;}
+.wf-journey{display:flex;align-items:stretch;gap:0;margin-bottom:14px;overflow:hidden;border-radius:8px;border:1.5px solid #CCC;}
+.wf-journey-step{flex:1;padding:10px 8px;text-align:center;border-right:1.5px solid #CCC;background:#F8F8F8;}
+.wf-journey-step:last-child{border-right:none;}
+.wf-journey-step .j-num{width:20px;height:20px;border-radius:50%;background:#333333;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;}
+.wf-journey-step .j-label{font-size:10px;font-weight:600;color:#333;line-height:1.3;}
+.wf-journey-step .j-sub{font-size:9px;color:#777;margin-top:2px;}
+.wf-qr-box{border:2px dashed #999;border-radius:8px;width:100px;height:100px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#777;text-align:center;background:#F5F5F5;flex-shrink:0;}
+.wf-success-icon{width:64px;height:64px;border-radius:50%;background:#333333;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px;}
+.wf-note-box{background:#FFF8E0;border:1.5px solid #E0B030;border-radius:6px;padding:10px 12px;font-size:11px;color:#6A4A00;margin-bottom:10px;line-height:1.5;}
+.wf-note-box.blue{background:#E8F0FF;border-color:#5080C0;color:#1A2A6A;}
+.wf-note-box.green{background:#EEEEEE;border-color:#555555;color:#2D2D2D;}
+.wf-subsidy-block{border:1.5px solid #CCC;border-radius:8px;padding:12px;background:#FAFAFA;margin-bottom:10px;}
+.wf-subsidy-block .sub-label{font-size:10px;font-weight:700;text-transform:uppercase;color:#444444;letter-spacing:.3px;margin-bottom:4px;}
+.wf-subsidy-block .sub-value{font-size:18px;font-weight:800;color:#1A2A1A;font-family:'Nunito',sans-serif;}
+.wf-subsidy-block .sub-desc{font-size:10px;color:#666;margin-top:2px;}
+.wf-selector{border:2px solid #CCC;border-radius:6px;padding:8px 12px;font-size:11px;color:#888;background:#FAFAFA;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.wf-selector::after{content:'▾';color:#999;}
+.idle-screen{background:#1A2A1A;min-height:800px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;}
+.idle-video{width:100%;height:200px;background:#0D180D;border-radius:10px;border:2px dashed #444444;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.idle-video .ph-icon{font-size:40px;opacity:.4;color:#BBBBBB;}
+.idle-video .ph-label{font-size:11px;color:#BBBBBB;opacity:.6;font-weight:600;}
+.idle-logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:#fff;margin-bottom:6px;}
+.idle-logo span{color:#BBBBBB;}
+.idle-tagline{font-size:12px;color:#999999;text-align:center;margin-bottom:20px;line-height:1.6;}
+.idle-mini-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-bottom:24px;}
+.idle-mini-tile{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 8px;text-align:center;}
+.idle-mini-tile .m-icon{font-size:22px;margin-bottom:4px;}
+.idle-mini-tile .m-label{font-size:10px;color:#C0D0C0;font-weight:600;}
+.idle-tap-btn{background:#333333;color:#fff;border:none;border-radius:12px;padding:14px 40px;font-size:15px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;letter-spacing:.2px;}
+.idle-tap-hint{font-size:10px;color:#777777;margin-top:8px;}
+.idle-banner{width:100%;background:rgba(60,60,60,.2);border:1px solid rgba(180,180,180,.2);border-radius:6px;padding:8px 14px;font-size:11px;color:#BBBBBB;text-align:center;margin-top:12px;}
+.screen-wrap{display:none;}
+.screen-wrap.active{display:block;}
+
+    /* ── INFORMATION HIERARCHY ── */
+    .info-split-container { display:flex; flex-direction:column; flex:1; overflow:hidden; }
+    .info-split-section { flex:1; padding:10px 16px; overflow-y:auto; min-height:0; }
+    .info-section-label { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.6px; color:#444444; border-left:3px solid #555555; padding-left:7px; margin-bottom:7px; display:flex; align-items:center; }
+    .content-format-badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; background:#EEEEEE; border:1px solid #AAAAAA; border-radius:4px; font-size:9px; color:#444444; font-weight:600; margin-bottom:7px; }
+    .category-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+    .wf-nav-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+    .wf-nav-card { border:1.5px solid #CCC; border-radius:8px; padding:9px 10px; background:#fff; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+    .wf-nav-card-title { font-family:'Nunito',sans-serif; font-weight:700; font-size:11px; color:#1A2A1A; line-height:1.3; }
+    .wf-nav-card-sub { font-size:9px; color:#888; margin-top:1px; }
+    .wf-nav-card-arrow { color:#444444; font-size:16px; font-weight:700; flex-shrink:0; }
+    .journey-strip { display:flex; border:1.5px solid #D0D0D0; border-radius:8px; overflow:hidden; }
+    .journey-step { flex:1; padding:7px 4px; text-align:center; border-right:1.5px solid #E0E0E0; background:#FAFAFA; }
+    .journey-step:last-child { border-right:none; }
+    .j-num { font-size:9px; font-weight:900; color:#444444; }
+    .j-label { font-size:10px; font-weight:700; color:#1A2A1A; }
+    .j-sub { font-size:8px; color:#888; }
+    .wf-chip-neutral { background:#F0F0F0; color:#555; border:1px solid #DDD; }
+  
+  </style>
+</head>
+<body>
+<div class="app">
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">WWW Kiosk App</div>
+    <div class="sidebar-sub">Low-Fi Wireframes · v1.2</div>
+  </div>
+  <nav class="screen-list">
+    <div class="screen-group">Idle &amp; Entry</div>
+    <button class="screen-btn active" onclick="show(1)"><span class="screen-num">01</span><span class="screen-name">Idle / Attract Screen</span></button>
+    <button class="screen-btn" onclick="show(2)"><span class="screen-num">02</span><span class="screen-name">Measurement Selection</span></button>
+    <button class="screen-btn" onclick="show(3)"><span class="screen-num">03</span><span class="screen-name">Feature Hub</span></button>
+
+    <div class="screen-group">Information (Redesigned)</div>
+    <button class="screen-btn" onclick="show(4)"><span class="screen-num">04</span><span class="screen-name">Info Landing</span></button>
+    <button class="screen-btn" onclick="show(5)"><span class="screen-num">05</span><span class="screen-name">Category Detail</span></button>
+    <button class="screen-btn" onclick="show(6)"><span class="screen-num">06</span><span class="screen-name">Measurement Detail</span></button>
+    <button class="screen-btn" onclick="show(7)"><span class="screen-num">07</span><span class="screen-name">Brand Detail</span></button>
+    <button class="screen-btn" onclick="show(8)"><span class="screen-num">08</span><span class="screen-name">Model Detail</span></button>
+
+    <div class="screen-group">House Scan</div>
+    <button class="screen-btn" onclick="show(9)"><span class="screen-num">09</span><span class="screen-name">House Scan Shell</span></button>
+
+    <div class="screen-group">Quotation</div>
+    <button class="screen-btn" onclick="show(10)"><span class="screen-num">10</span><span class="screen-name">Quotation Form</span></button>
+    <button class="screen-btn" onclick="show(11)"><span class="screen-num">11</span><span class="screen-name">Quotation Success</span></button>
+
+    <div class="screen-group">Subsidy</div>
+    <button class="screen-btn" onclick="show(12)"><span class="screen-num">12</span><span class="screen-name">Subsidy Overview</span></button>
+    <button class="screen-btn" onclick="show(13)"><span class="screen-num">13</span><span class="screen-name">Local Subsidy Ref</span></button>
+
+    <div class="screen-group">Contact Us</div>
+    <button class="screen-btn" onclick="show(14)"><span class="screen-num">14</span><span class="screen-name">Contact Us Form</span></button>
+    <button class="screen-btn" onclick="show(15)"><span class="screen-num">15</span><span class="screen-name">Contact Success</span></button>
+  </nav>
+</aside>
+
+<!-- ─── MAIN ─── -->
+<main class="main">
+<div class="kiosk-wrap">
+
+<!-- DEVICE -->
+<div class="device">
+<div class="device-screen">
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 01 — IDLE / ATTRACT SCREEN
+═══════════════════════════════════════════ -->
+<div id="s1" class="screen-wrap active">
+  <div style="position:relative;width:100%;min-height:800px;background:#1A1A1A;overflow:hidden;display:flex;flex-direction:column;">
+
+    <!-- ── FULL-SCREEN ATTRACT AREA ── -->
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+
+      <!-- Video / looping banner placeholder — fills entire screen -->
+      <div style="position:absolute;inset:0;background:linear-gradient(160deg,#1E1E1E 0%,#222222 40%,#1A1A1A 100%);"></div>
+
+      <!-- Subtle animated texture dots (decorative grid) -->
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(200,200,200,0.07) 1px,transparent 1px);background-size:28px 28px;"></div>
+
+      <!-- Large media placeholder -->
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;">
+        <div style="width:88px;height:88px;border-radius:50%;border:3px dashed rgba(180,180,180,0.3);display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:36px;opacity:.5;">▶</div>
+        </div>
+        <div style="font-size:11px;color:rgba(180,180,180,0.4);font-weight:600;letter-spacing:.5px;text-align:center;">[ AUTO-PLAY VIDEO  ·  LOOPING BANNER  ·  ANIMATION ]<br><span style="font-size:9px;opacity:.6;">Full-screen attract content — provided by WWW team (OQ-02)</span></div>
+      </div>
+
+      <!-- Dark gradient overlay — bottom 40% — so tap message reads clearly -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.85) 40%, transparent 100%);"></div>
+
+      <!-- Dark gradient overlay — top 30% — logo reads clearly -->
+      <div style="position:absolute;top:0;left:0;right:0;height:30%;background:linear-gradient(to bottom, rgba(5,12,5,0.7) 0%, transparent 100%);"></div>
+    </div>
+
+    <!-- ── LOGO — top overlay ── -->
+    <div style="position:relative;z-index:2;padding:22px 22px 0;display:flex;align-items:center;gap:8px;">
+      <div style="width:28px;height:28px;border-radius:6px;background:#333333;display:flex;align-items:center;justify-content:center;font-size:14px;">🌿</div>
+      <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#fff;letter-spacing:-.3px;">Woon<span style="color:#BBBBBB;">Wijzer</span>Winkel</div>
+    </div>
+
+    <!-- ── SPACER ── -->
+    <div style="flex:1;"></div>
+
+    <!-- ── BOTTOM CONTENT — tap message + tagline ── -->
+    <div style="position:relative;z-index:2;padding:0 24px 32px;text-align:center;">
+
+      <!-- Tagline -->
+      <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:18px;color:#ffffff;margin-bottom:6px;line-height:1.3;">Discover sustainable solutions<br>for your home.</div>
+      <div style="font-size:11px;color:rgba(180,220,180,0.75);margin-bottom:28px;line-height:1.5;">Solar panels · Insulation · Heat pumps · Ventilation</div>
+
+      <!-- Tap prompt — pulse ring + text -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <!-- Pulsing ring indicator -->
+        <div style="position:relative;width:52px;height:52px;">
+          <!-- Outer pulse ring (static in wireframe, animated in production) -->
+          <div style="position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(180,180,180,0.25);"></div>
+          <div style="position:absolute;inset:-12px;border-radius:50%;border:1.5px solid rgba(180,180,180,0.12);"></div>
+          <!-- Inner circle -->
+          <div style="width:52px;height:52px;border-radius:50%;background:rgba(60,60,60,0.5);border:2px solid rgba(180,180,180,0.6);display:flex;align-items:center;justify-content:center;font-size:22px;">👆</div>
+        </div>
+        <!-- Tap message -->
+        <div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:#BBBBBB;letter-spacing:.3px;">TAP ANYWHERE TO BEGIN</div>
+        <div style="font-size:10px;color:rgba(180,220,180,0.5);">Touch the screen to explore our solutions</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 02 — MEASUREMENT SELECTION
+═══════════════════════════════════════════ -->
+<div id="s2" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content">
+    <div class="wf-title">Select Your Measurement</div>
+    <div class="wf-subtitle">Click at any measurement to continue</div>
+    <div class="wf-measurement-grid">
+      <div class="wf-measure-card selected">
+        <div class="m-icon">🧱</div>
+        <div class="m-label">Cavity Wall<br>Insulation</div>
+        <div style="font-size:9px;color:#444444;margin-top:3px;font-weight:700;">✓ Selected</div>
+      </div>
+      <div class="wf-measure-card">
+        <div class="m-icon">🏗️</div>
+        <div class="m-label">Floor<br>Insulation</div>
+      </div>
+      <div class="wf-measure-card">
+        <div class="m-icon">🏠</div>
+        <div class="m-label">Roof<br>Insulation</div>
+      </div>
+      <div class="wf-measure-card">
+        <div class="m-icon">☀️</div>
+        <div class="m-label">Solar<br>Panels</div>
+      </div>
+      <div class="wf-measure-card">
+        <div class="m-icon">🌡️</div>
+        <div class="m-label">Heat<br>Pump</div>
+      </div>
+      <div class="wf-measure-card">
+        <div class="m-icon">💨</div>
+        <div class="m-label">Ventilation</div>
+      </div>
+    </div>
+    <div class="wf-note-box">📌 Select at least one measurement. Your selection carries over into the next steps.</div>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="wf-btn-primary">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 03 — MAIN FEATURE HUB
+═══════════════════════════════════════════ -->
+<div id="s3" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav">
+      <button class="wf-btn-ghost">← Back</button>
+      <button class="wf-btn-ghost">⌂ Home</button>
+    </div>
+  </div>
+  <div class="wf-content">
+    <div style="margin-bottom:8px;">
+      <div style="font-size:11px;color:#555;margin-bottom:5px;font-weight:600;">Selected measurement(s):</div>
+      <span class="wf-chip">🧱 Cavity Wall Insulation</span>
+    </div>
+    <div class="wf-divider"></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:4px;">What would you like to do?</div>
+    <div class="wf-subtitle" style="margin-bottom:12px;">Choose one of the options below to continue.</div>
+    <div class="wf-grid-2">
+      <div class="wf-tile">
+        <div class="tile-icon">ℹ️</div>
+        <div class="tile-title">Information</div>
+        <div class="tile-desc">View products and services</div>
+      </div>
+      <div class="wf-tile">
+        <div class="tile-icon">🏠</div>
+        <div class="tile-title">House Scan</div>
+        <div class="tile-desc">Scan your home for improvements</div>
+      </div>
+      <div class="wf-tile">
+        <div class="tile-icon">📋</div>
+        <div class="tile-title">Quotation</div>
+        <div class="tile-desc">Request a quotation</div>
+      </div>
+      <div class="wf-tile">
+        <div class="tile-icon">💶</div>
+        <div class="tile-title">Subsidy</div>
+        <div class="tile-desc">View available subsidies</div>
+      </div>
+    </div>
+    <div class="wf-tile" style="display:flex;align-items:center;gap:14px;text-align:left;padding:12px 16px;">
+      <div style="font-size:28px;">📞</div>
+      <div>
+        <div class="tile-title" style="font-size:13px;">Contact Us</div>
+        <div class="tile-desc">Leave your details — we'll get back to you</div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:#999;text-align:center;margin-top:8px;">Inactive for 60–120 sec → automatically returns to home screen</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 04 — INFORMATION LANDING (GENERAL KIOSK)
+═══════════════════════════════════════════ -->
+<div id="s4" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding-bottom:0;">
+    <div class="wf-breadcrumb">Home / <span>Information</span></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:3px;">Information</div>
+
+    <!-- WHO WE ARE -->
+    <div class="info-section-label" style="margin-bottom:7px;">Who We Are</div>
+    <div style="display:grid;grid-template-columns:90px 1fr;gap:10px;margin-bottom:12px;align-items:flex-start;">
+      <div class="wf-placeholder" style="height:72px;border-radius:6px;font-size:9px;">[ Image ]</div>
+      <div style="font-size:11px;color:#555;line-height:1.6;">WoonWijzerWinkel guides homeowners through a complete sustainability journey — from advice and quotation through to installation and subsidy management.<br><span style="font-size:9px;color:#999;">[ Full description — WWW team to provide · OQ-04 ]</span></div>
+    </div>
+
+    <div class="wf-divider" style="margin:8px 0;"></div>
+
+    <!-- CATEGORIES -->
+    <div class="info-section-label" style="margin-bottom:6px;">Our Products &amp; Services <span style="font-size:9px;font-weight:400;color:#888;margin-left:6px;">— tap a category to explore</span></div>
+    <div class="category-grid" style="margin-bottom:4px;">
+      <div class="wf-nav-card"><div><div class="wf-nav-card-title">Zonnepanelen</div><div class="wf-nav-card-sub">Solar Panels</div></div><div class="wf-nav-card-arrow">›</div></div>
+      <div class="wf-nav-card"><div><div class="wf-nav-card-title">Isoleren</div><div class="wf-nav-card-sub">Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+      <div class="wf-nav-card"><div><div class="wf-nav-card-title">Warmtepomp</div><div class="wf-nav-card-sub">Heat Pump</div></div><div class="wf-nav-card-arrow">›</div></div>
+      <div class="wf-nav-card"><div><div class="wf-nav-card-title">Ventilatie</div><div class="wf-nav-card-sub">Ventilation</div></div><div class="wf-nav-card-arrow">›</div></div>
+      <div class="wf-nav-card"><div><div class="wf-nav-card-title">Installatie</div><div class="wf-nav-card-sub">Installation</div></div><div class="wf-nav-card-arrow">›</div></div>
+      <div class="wf-nav-card" style="border-style:dashed;opacity:.5;"><div><div class="wf-nav-card-title">+ More categories</div><div class="wf-nav-card-sub">All categories that needs to be included</div></div></div>
+    </div>
+    <div class="wf-annot-note" style="margin-top:4px;">↑ 2-col grid scrolls vertically to support 20+ categories</div>
+    <div class="wf-annot-note">⚑ Category kiosk skips this screen — lands directly on Screen 05 with category pre-selected</div>
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="display:flex;gap:8px;"><button class="wf-btn-secondary">📞 Contact Us</button><button class="wf-btn-primary">📋 Request Quotation</button></div>
+  </div>
+</div>
+
+<div id="s5" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding-bottom:6px;">
+    <div class="wf-breadcrumb">Home / Information / <span>Isoleren</span></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:2px;">Isoleren <span style="font-size:12px;font-weight:400;color:#777;">— Insulation</span></div>
+    <div class="wf-tag">Category</div>
+  </div>
+
+  <!-- EQUAL SPLIT: About + Explore -->
+  <div class="info-split-container">
+
+    <!-- ABOUT SECTION -->
+    <div class="info-split-section" style="border-bottom:2px solid #E0E0E0;">
+      <div class="info-section-label">About This Category</div>
+      <div class="content-format-badge">📄 Content: Text + Image</div>
+      <div style="display:grid;grid-template-columns:95px 1fr;gap:10px;align-items:flex-start;">
+        <div class="wf-placeholder" style="height:80px;border-radius:6px;font-size:9px;">[ Category<br>Image ]</div>
+        <div style="font-size:11px;color:#555;line-height:1.6;">[ Description of Isoleren category — what insulation is, why it matters, energy savings, sustainability impact. Content provided by WWW team (OQ-04). ]</div>
+      </div>
+    </div>
+
+    <div style="height:3px;background:#F0F0F0;"></div>
+
+    <!-- EXPLORE MEASUREMENTS -->
+    <div class="info-split-section">
+      <div class="info-section-label">Measurements <span style="font-size:9px;font-weight:400;color:#888;margin-left:4px;">— select to explore</span></div>
+      <div class="wf-nav-grid">
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Muurisolatie</div><div class="wf-nav-card-sub">Wall Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Glasisolatie</div><div class="wf-nav-card-sub">Glass Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Spouwisolatie</div><div class="wf-nav-card-sub">Cavity Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Vloerisolatie</div><div class="wf-nav-card-sub">Floor Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Dakisolatie</div><div class="wf-nav-card-sub">Roof Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Bodemisolatie</div><div class="wf-nav-card-sub">Ground Insulation</div></div><div class="wf-nav-card-arrow">›</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="display:flex;gap:8px;"><button class="wf-btn-secondary">📞 Contact Us</button><button class="wf-btn-primary">📋 Request Quotation</button></div>
+  </div>
+</div>
+
+<div id="s9" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding:10px 14px 6px;">
+    <div class="wf-breadcrumb">Home / <span>House Scan</span></div>
+    <div class="wf-annot-note" style="margin-bottom:8px;">⚑ House Scan is an existing CRM webview — shell provides kiosk navigation wrapper only. Content below reflects Step 1 of the existing House Scan UI (PRD => 4.2).</div>
+
+    <!-- ── WEBVIEW BOUNDARY START ── -->
+    <div style="border:2px dashed #AAAAAA;border-radius:10px;overflow:hidden;background:#fff;">
+
+      <!-- Step progress bar — 6 steps -->
+      <div style="background:#1A1A2E;padding:10px 12px;display:flex;align-items:center;gap:0;">
+        <div style="width:28px;height:28px;flex-shrink:0;"><div style="width:28px;height:28px;border-radius:50%;background:#5C5CFF;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;">1</div></div>
+        <div style="flex:1;height:2px;background:#5C5CFF;"></div>
+        <div style="width:22px;height:22px;flex-shrink:0;"><div style="width:22px;height:22px;border-radius:50%;background:#444;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;">2</div></div>
+        <div style="flex:1;height:2px;background:#444;"></div>
+        <div style="width:22px;height:22px;flex-shrink:0;"><div style="width:22px;height:22px;border-radius:50%;background:#444;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;">3</div></div>
+        <div style="flex:1;height:2px;background:#444;"></div>
+        <div style="width:22px;height:22px;flex-shrink:0;"><div style="width:22px;height:22px;border-radius:50%;background:#444;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;">4</div></div>
+        <div style="flex:1;height:2px;background:#444;"></div>
+        <div style="width:22px;height:22px;flex-shrink:0;"><div style="width:22px;height:22px;border-radius:50%;background:#444;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;">5</div></div>
+        <div style="flex:1;height:2px;background:#444;"></div>
+        <div style="width:22px;height:22px;flex-shrink:0;"><div style="width:22px;height:22px;border-radius:50%;background:#444;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;">6</div></div>
+      </div>
+      <!-- Step labels -->
+      <div style="background:#1A1A2E;padding:0 10px 8px;display:flex;justify-content:space-between;">
+        <div style="font-size:8px;color:#5C5CFF;font-weight:700;text-align:center;width:60px;">Information about your home</div>
+        <div style="font-size:8px;color:#666;text-align:center;width:55px;">Are these details correct?</div>
+        <div style="font-size:8px;color:#666;text-align:center;width:55px;">Current facilities</div>
+        <div style="font-size:8px;color:#666;text-align:center;width:55px;">Smart improvements</div>
+        <div style="font-size:8px;color:#666;text-align:center;width:45px;">Your details</div>
+        <div style="font-size:8px;color:#666;text-align:center;width:40px;">Closure</div>
+      </div>
+
+      <!-- Main content area -->
+      <div style="padding:12px 14px;">
+
+        <!-- Start over button -->
+        <div style="text-align:center;margin-bottom:10px;">
+          <button style="border:1.5px solid #CCC;border-radius:20px;background:#fff;padding:5px 14px;font-size:10px;color:#555;display:inline-flex;align-items:center;gap:5px;">↺ Start over</button>
+        </div>
+
+        <!-- Title -->
+        <div style="text-align:center;margin-bottom:4px;">
+          <div style="font-size:16px;font-weight:800;color:#1A1A2E;font-family:'Nunito',sans-serif;">Current facilities</div>
+          <div style="font-size:10px;color:#888;margin-top:3px;line-height:1.5;">In the overview below, we have selected the sustainable improvements for your home.<br>Would you like to receive a no-obligation quote? Let us know.</div>
+        </div>
+
+        <div style="height:1px;background:#EAEAEA;margin:10px 0;"></div>
+
+        <!-- HOUSE DETAILS form section -->
+        <div style="font-size:10px;font-weight:800;color:#5C5CFF;letter-spacing:.3px;margin-bottom:8px;">HOUSE DETAILS</div>
+
+        <!-- Form fields row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px;margin-bottom:12px;">
+          <div>
+            <div style="font-size:8px;color:#5C5CFF;font-weight:700;margin-bottom:2px;">* POSTCODE</div>
+            <div style="border-bottom:1.5px solid #5C5CFF;padding:4px 2px;font-size:11px;color:#222;font-weight:600;">3134 AL</div>
+          </div>
+          <div>
+            <div style="font-size:8px;color:#5C5CFF;font-weight:700;margin-bottom:2px;">* HOUSE NUMBER</div>
+            <div style="border-bottom:1.5px solid #5C5CFF;padding:4px 2px;font-size:11px;color:#222;font-weight:600;">11</div>
+          </div>
+          <div>
+            <div style="font-size:8px;color:#AAA;font-weight:600;margin-bottom:2px;">Apartment number</div>
+            <div style="border-bottom:1.5px solid #DDD;padding:4px 2px;font-size:11px;color:#CCC;">——</div>
+          </div>
+          <div>
+            <div style="font-size:8px;color:#AAA;font-weight:600;margin-bottom:2px;">Addition</div>
+            <div style="border-bottom:1.5px solid #DDD;padding:4px 2px;font-size:11px;color:#CCC;">——</div>
+          </div>
+        </div>
+
+        <!-- WHAT KIND OF HOME -->
+        <div style="font-size:10px;font-weight:800;color:#5C5CFF;letter-spacing:.3px;margin-bottom:8px;">WHAT KIND OF HOME DO YOU HAVE?</div>
+
+        <!-- Row 1: 5 house types -->
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:5px;">
+          <div style="border:2px solid #5C5CFF;border-radius:8px;padding:6px 4px;text-align:center;background:#F0F0FF;">
+            <div style="font-size:18px;margin-bottom:3px;">🏢</div>
+            <div style="font-size:8px;font-weight:700;color:#1A1A2E;">Apartment</div>
+            <div style="width:16px;height:16px;border-radius:50%;background:#22C55E;margin:4px auto 0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;">✓</div>
+          </div>
+          <div style="border:1.5px solid #DDD;border-radius:8px;padding:6px 4px;text-align:center;">
+            <div style="font-size:18px;margin-bottom:3px;">🏠</div>
+            <div style="font-size:8px;font-weight:600;color:#444;">Terraced house</div>
+          </div>
+          <div style="border:1.5px solid #DDD;border-radius:8px;padding:6px 4px;text-align:center;">
+            <div style="font-size:18px;margin-bottom:3px;">🏘️</div>
+            <div style="font-size:8px;font-weight:600;color:#444;">Corner house</div>
+          </div>
+          <div style="border:1.5px solid #DDD;border-radius:8px;padding:6px 4px;text-align:center;">
+            <div style="font-size:18px;margin-bottom:3px;">🏡</div>
+            <div style="font-size:8px;font-weight:600;color:#444;">2-Under-1-Cover</div>
+          </div>
+          <div style="border:1.5px solid #DDD;border-radius:8px;padding:6px 4px;text-align:center;">
+            <div style="font-size:18px;margin-bottom:3px;">🏗️</div>
+            <div style="font-size:8px;font-weight:600;color:#444;">Detached house</div>
+          </div>
+        </div>
+        <!-- Row 2: 2 more types centred -->
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:12px;">
+          <div></div>
+          <div style="border:1.5px solid #DDD;border-radius:8px;padding:6px 4px;text-align:center;">
+            <div style="font-size:18px;margin-bottom:3px;">⛵</div>
+            <div style="font-size:8px;font-weight:600;color:#444;">Houseboat</div>
+          </div>
+          <div style="border:1.5px solid #DDD;border-radius:8px;padding:6px 4px;text-align:center;">
+            <div style="font-size:18px;margin-bottom:3px;">🏪</div>
+            <div style="font-size:8px;font-weight:600;color:#444;">Commercial building</div>
+          </div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <!-- Following button -->
+        <div style="display:flex;justify-content:flex-end;">
+          <button style="background:#5C5CFF;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px;">Following →</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- ── WEBVIEW BOUNDARY END ── -->
+
+    <div class="wf-annot-note" style="margin-top:6px;">↑ Dashed border = webview boundary. Content inside is the existing CRM House Scan UI — no changes made to it (PRD §4.2.2). Kiosk adds Back + Home buttons in the shell header above only.</div>
+  </div>
+
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="font-size:10px;color:#999;">Steps 2–6 handled within CRM webview</div>
+  </div>
+</div>
+
+<div id="s10" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding:10px 14px 6px;">
+    <div class="wf-breadcrumb">Home / <span>Quotation</span></div>
+    <div class="wf-annot-note" style="margin-bottom:8px;">⚑ Quotation is reused from existing Lead Creation Form (Comfort Isolatie / Maassluis). Shell provides kiosk nav wrapper. Remarks field + Submit button added by kiosk (PRD §4.3 · OQ-10).</div>
+
+    <!-- ── WEBVIEW BOUNDARY START ── -->
+    <div style="border:2px dashed #AAAAAA;border-radius:10px;overflow:hidden;background:#fff;">
+
+      <!-- CRM top bar -->
+      <div style="background:#F05A5A;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;border-radius:6px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;">🏠</div>
+        <div style="font-size:11px;color:#fff;font-weight:600;">The largest store for sustainable living in the Netherlands</div>
+      </div>
+
+      <!-- Form inner -->
+      <div style="padding:14px 16px;">
+
+        <!-- Page title -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:5px;">
+          <div style="width:3px;height:36px;background:#F05A5A;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#F05A5A;">Lead Creation Form (Insulation Maassluis)</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Fill out the form below to create a new lead.</div>
+          </div>
+        </div>
+
+        <!-- LEAD DETAILS -->
+        <div class="wf-card" style="padding:12px 14px;margin-bottom:10px;">
+          <div style="font-size:11px;font-weight:800;color:#F05A5A;margin-bottom:10px;">Lead Details</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
+            <div style="position:relative;border:1px solid #CCC;border-radius:6px;padding:14px 10px 6px;">
+              <div style="position:absolute;top:-7px;left:10px;background:white;padding:0 4px;font-size:9px;color:#999;">Action</div>
+              <div style="font-size:11px;font-weight:600;color:#333;">Kiosk Quote</div>
+            </div>
+            <div style="position:relative;border:1px solid #CCC;border-radius:6px;padding:14px 10px 6px;">
+              <div style="position:absolute;top:-7px;left:10px;background:white;padding:0 4px;font-size:9px;color:#999;">Lead status</div>
+              <div style="font-size:11px;color:#333;">Interesse</div>
+            </div>
+            <div style="position:relative;border:1px solid #CCC;border-radius:6px;padding:14px 10px 6px;">
+              <div style="position:absolute;top:-7px;left:10px;background:white;padding:0 4px;font-size:9px;color:#999;">Categories</div>
+              <div style="font-size:11px;color:#333;">isoleren</div>
+            </div>
+          </div>
+          <!-- Measures dropdown -->
+          <div style="position:relative;border:1px solid #CCC;border-radius:6px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:11px;color:#888;">Measures</div>
+            <div style="font-size:11px;color:#555;">▾</div>
+          </div>
+        </div>
+
+        <!-- USER DETAILS -->
+        <div class="wf-card" style="padding:12px 14px;margin-bottom:10px;">
+          <div style="font-size:11px;font-weight:800;color:#F05A5A;margin-bottom:10px;">User details</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">First name *</div>
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">Surname *</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">Email *</div>
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">Mobile number *</div>
+          </div>
+        </div>
+
+        <!-- HOUSE DETAILS -->
+        <div class="wf-card" style="padding:12px 14px;margin-bottom:10px;">
+          <div style="font-size:11px;font-weight:800;color:#F05A5A;margin-bottom:10px;">House details</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">Postcode *</div>
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">House number *</div>
+            <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;font-size:11px;color:#AAA;">House letter</div>
+          </div>
+        </div>
+
+        <!-- REMARKS — kiosk addition, wireframe style -->
+        <div class="wf-card" style="padding:12px 14px;margin-bottom:10px;border:1.5px solid #555555;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+            <div style="font-size:11px;font-weight:800;color:#444444;">Remarks</div>
+          </div>
+          <div style="border:1px solid #CCC;border-radius:6px;padding:10px 12px;min-height:60px;font-size:11px;color:#AAA;background:#FAFAFA;">[ Optional remarks or additional notes... ]</div>
+        </div>
+
+        <!-- SUBMIT BUTTON — kiosk style -->
+        <div style="display:flex;justify-content:flex-end;gap:8px;">
+          <button class="wf-btn-outline" style="font-size:11px;">← Back</button>
+          <button class="wf-btn-primary" style="font-size:12px;padding:10px 24px;">Submit Quotation Request →</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- ── WEBVIEW BOUNDARY END ── -->
+
+    <div class="wf-annot-note" style="margin-top:6px;">↑ Dashed border = webview boundary — existing Lead Creation Form reused as-is. Quantity, upload &amp; local subsidy sections removed (OQ-10). Remarks field + Submit button added by kiosk layer.</div>
+  </div>
+
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="font-size:10px;color:#999;">Submits directly to CRM as lead (PRD §6.1)</div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 05 — INFORMATION DETAIL PAGE
+═══════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 06 — HOUSE SCAN SHELL
+═══════════════════════════════════════════ -->
+<div id="s6" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding-bottom:6px;">
+    <div class="wf-breadcrumb">Home / Information / Isoleren / <span>Muurisolatie</span></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:2px;">Muurisolatie <span style="font-size:12px;font-weight:400;color:#777;">— Wall Insulation</span></div>
+    <div class="wf-tag" style="background:#E8F0FF;color:#2040A0;">Measurement</div>
+  </div>
+
+  <div class="info-split-container">
+
+    <!-- ABOUT MEASUREMENT -->
+    <div class="info-split-section" style="border-bottom:2px solid #E0E0E0;">
+      <div class="info-section-label">About This Measurement</div>
+      <div class="content-format-badge">🎬 Content: Text + Video</div>
+      <div style="display:grid;grid-template-columns:95px 1fr;gap:10px;align-items:flex-start;">
+        <div class="wf-placeholder" style="height:80px;border-radius:6px;font-size:9px;">[ Video /<br>Image ]</div>
+        <div style="font-size:11px;color:#555;line-height:1.6;">[ Description of Muurisolatie — how wall insulation works, thermal performance, installation process. Content by WWW team (OQ-04). ]</div>
+      </div>
+    </div>
+
+    <div style="height:3px;background:#F0F0F0;"></div>
+
+    <!-- BRANDS -->
+    <div class="info-split-section">
+      <div class="info-section-label">Brands <span style="font-size:9px;font-weight:400;color:#888;margin-left:4px;">— select a brand to explore</span></div>
+      <div class="wf-nav-grid">
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Brand A</div><div class="wf-nav-card-sub">4 models available</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Brand B</div><div class="wf-nav-card-sub">3 models available</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Brand C</div><div class="wf-nav-card-sub">2 models available</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Brand D</div><div class="wf-nav-card-sub">5 models available</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Brand E</div><div class="wf-nav-card-sub">2 models available</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Brand F</div><div class="wf-nav-card-sub">1 model available</div></div><div class="wf-nav-card-arrow">›</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="display:flex;gap:8px;"><button class="wf-btn-secondary">📞 Contact Us</button><button class="wf-btn-primary">📋 Request Quotation</button></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 07 — QUOTATION STEP 1: MEASUREMENT
+═══════════════════════════════════════════ -->
+<div id="s7" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding-bottom:6px;">
+    <div class="wf-breadcrumb">Home / Info / Isoleren / Muurisolatie / <span>Brand A</span></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:2px;">Brand A</div>
+    <div class="wf-tag" style="background:#FFF0E0;color:#A04000;">Brand</div>
+  </div>
+
+  <div class="info-split-container">
+
+    <!-- ABOUT BRAND -->
+    <div class="info-split-section" style="border-bottom:2px solid #E0E0E0;">
+      <div class="info-section-label">About This Brand</div>
+      <div class="content-format-badge">📄 Content: Text + Image</div>
+      <div style="display:grid;grid-template-columns:95px 1fr;gap:10px;align-items:flex-start;">
+        <div class="wf-placeholder" style="height:80px;border-radius:6px;font-size:9px;">[ Brand<br>Image ]</div>
+        <div style="font-size:11px;color:#555;line-height:1.6;">[ Brand A description — specialisation, certifications, warranty, why WWW recommends this brand. Content by WWW team (OQ-04). ]</div>
+      </div>
+    </div>
+
+    <div style="height:3px;background:#F0F0F0;"></div>
+
+    <!-- MODELS -->
+    <div class="info-split-section">
+      <div class="info-section-label">Models <span style="font-size:9px;font-weight:400;color:#888;margin-left:4px;">— select a model to view details</span></div>
+      <div class="wf-nav-grid">
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Model X1</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Model X2</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Model X3</div></div><div class="wf-nav-card-arrow">›</div></div>
+        <div class="wf-nav-card"><div><div class="wf-nav-card-title">Model X4</div></div><div class="wf-nav-card-arrow">›</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="display:flex;gap:8px;"><button class="wf-btn-secondary">📞 Contact Us</button><button class="wf-btn-primary">📋 Request Quotation</button></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 08 — QUOTATION STEP 2: CATEGORY
+═══════════════════════════════════════════ -->
+<div id="s8" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content">
+    <div class="wf-breadcrumb">Home / Info / Isoleren / Muurisolatie / Brand A / <span>Model X1</span></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:2px;">Model X1</div>
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:10px;">
+      <div class="wf-tag" style="background:#F0E8FF;color:#5020A0;">Model</div>
+      <div class="content-format-badge">🖼️ Content: Image + Text</div>
+    </div>
+
+    <!-- Image + text side by side -->
+    <div style="display:grid;grid-template-columns:110px 1fr;gap:10px;margin-bottom:10px;align-items:flex-start;">
+      <div class="wf-placeholder" style="height:95px;border-radius:6px;font-size:9px;">[ Product<br>Image ]</div>
+      <div style="font-size:11px;color:#555;line-height:1.65;">[ Detailed model description — specifications, features, applicable home types, installation notes. Content provided by WWW team (OQ-04). ]</div>
+    </div>
+
+    <!-- Optional video placeholder -->
+    <div class="wf-placeholder" style="height:44px;border-radius:6px;font-size:9px;margin-bottom:10px;">[ Optional product video — if available ]</div>
+
+    <!-- Key specs -->
+    <div class="info-section-label" style="margin-bottom:6px;">Key Specifications</div>
+    <div class="wf-card" style="padding:9px 12px;margin-bottom:8px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;font-size:10px;color:#444;line-height:1.9;">
+        <div>📐 Thickness: <strong>[xx mm]</strong></div>
+        <div>🌡️ R-value: <strong>[x.x m²K/W]</strong></div>
+        <div>🔊 Sound: <strong>[xx dB]</strong></div>
+        <div>♻️ Material: <strong>[placeholder]</strong></div>
+        <div>📦 Coverage: <strong>[x m² / pack]</strong></div>
+        <div>✅ Subsidy: <strong>ISDE eligible</strong></div>
+      </div>
+    </div>
+
+    <div class="wf-annot-note">↑ End of hierarchy — no further selection. Information only.</div>
+  </div>
+
+  <!-- Same footer pattern as s6 and s7 -->
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="display:flex;gap:8px;"><button class="wf-btn-secondary">📞 Contact Us</button><button class="wf-btn-primary">📋 Request Quotation</button></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 09 — QUOTATION STEP 3: HOUSE INFO
+═══════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 10 — QUOTATION STEP 4: CONTACT INFO
+═══════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 11 — QUOTATION SUCCESS
+═══════════════════════════════════════════ -->
+<div id="s11" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:680px;padding:24px;text-align:center;">
+    <div class="wf-success-icon">✓</div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:22px;color:#1A2A1A;margin-bottom:8px;">Thank You!</div>
+    <div style="font-size:13px;color:#444;max-width:320px;line-height:1.7;margin-bottom:20px;">Your quotation request has been successfully received. One of our advisors will contact you as soon as possible via your preferred contact method.</div>
+    <div class="wf-card" style="width:100%;max-width:320px;padding:12px 14px;text-align:left;margin-bottom:16px;">
+      <div class="wf-label" style="margin-bottom:5px;">Request Summary</div>
+      <div style="font-size:11px;color:#555;line-height:1.8;">
+        📍 Measurement: Cavity Wall Insulation<br>
+        🏷️ Category: Insulation<br>
+        🏠 Address: 1234 AB · no. 12<br>
+        📧 Contact: name@email.com
+      </div>
+    </div>
+    <button class="wf-btn-primary" style="margin-bottom:12px;">⌂ Return to Home Screen</button>
+    <div style="font-size:10px;color:#AAA;">Automatically returning in <strong>30</strong> seconds...</div>
+    <div class="wf-note-box" style="margin-top:14px;max-width:340px;text-align:left;">📌 Submission saved to CRM as a lead, visible on CRM dashboard for advisors to review.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 12 — SUBSIDY OVERVIEW
+═══════════════════════════════════════════ -->
+<div id="s12" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">← Back</button><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div class="wf-content" style="padding:10px 14px 6px;">
+    <div class="wf-breadcrumb">Home / <span>Subsidy</span></div>
+    <div class="wf-annot-note" style="margin-bottom:8px;">⚑ Subsidy calculator is reused from existing component. Shell provides kiosk wrapper only (PRD §4.4). Local subsidy link at bottom connects to Screen 13.</div>
+
+    <!-- ── WEBVIEW BOUNDARY START ── -->
+    <div style="border:2px dashed #AAAAAA;border-radius:10px;overflow:hidden;background:#f5f5f5;">
+
+      <!-- Red header -->
+      <div style="background:#CC2222;padding:16px 18px;text-align:center;">
+        <div style="font-size:16px;font-weight:900;color:#ffffff;letter-spacing:1px;font-family:'Nunito',sans-serif;">SUBSIDY CALCULATOR 2026</div>
+      </div>
+
+      <!-- Calculator body -->
+      <div style="padding:14px 16px;background:#f5f5f5;">
+
+        <!-- MEASURE 1 -->
+        <div style="background:white;border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+          <div style="font-size:9px;font-weight:700;color:#555;letter-spacing:.5px;margin-bottom:6px;">MEASURE 1</div>
+          <!-- Measure dropdown -->
+          <div style="border:1.5px solid #CCC;border-radius:6px;padding:9px 12px;font-size:11px;color:#333;margin-bottom:8px;display:flex;justify-content:space-between;">
+            <span>Floor insulation (€5.50)</span><span style="color:#888;">▾</span>
+          </div>
+          <!-- Biobased bonus checkbox -->
+          <div style="background:#EEEEEE;border:1.5px solid #4CAF50;border-radius:6px;padding:9px 12px;margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+            <div style="width:16px;height:16px;background:#4CAF50;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;flex-shrink:0;">✓</div>
+            <div style="font-size:11px;color:#444444;font-weight:600;">Biobased bonus?</div>
+          </div>
+          <!-- Surface area -->
+          <div style="font-size:9px;font-weight:700;color:#555;letter-spacing:.5px;margin-bottom:4px;">SURFACE AREA (M²)</div>
+          <div style="border:1.5px solid #CCC;border-radius:6px;padding:9px 12px;font-size:11px;color:#333;margin-bottom:4px;">120</div>
+          <div style="font-size:9px;color:#CC2222;">Range: 20 to 130 m²</div>
+        </div>
+
+        <!-- Prior installation checkbox -->
+        <div style="background:white;border-radius:8px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;">
+          <div style="width:17px;height:17px;background:#4CAF50;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;flex-shrink:0;margin-top:1px;">✓</div>
+          <div style="font-size:10px;color:#333;line-height:1.5;">Have you already had a heat pump, solar water heater, district heating, or insulation installed in another part of the building (in the past 24 months)?</div>
+        </div>
+
+        <!-- Remove 2nd measure button -->
+        <div style="border:1.5px dashed #CC2222;border-radius:6px;padding:8px;text-align:center;margin-bottom:10px;">
+          <div style="font-size:10px;color:#CC2222;font-weight:700;">— REMOVE 2ND MEASURE</div>
+        </div>
+
+        <!-- MEASURE 2 -->
+        <div style="background:white;border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+          <div style="font-size:9px;font-weight:700;color:#555;letter-spacing:.5px;margin-bottom:6px;">MEASURE 2</div>
+          <div style="border:1.5px solid #CCC;border-radius:6px;padding:9px 12px;font-size:11px;color:#AAA;margin-bottom:8px;display:flex;justify-content:space-between;">
+            <span>— Select measure —</span><span style="color:#888;">▾</span>
+          </div>
+          <div style="font-size:9px;font-weight:700;color:#555;letter-spacing:.5px;margin-bottom:4px;">SURFACE AREA (M²)</div>
+          <div style="border:1.5px solid #CCC;border-radius:6px;padding:9px 12px;font-size:11px;color:#333;">0</div>
+        </div>
+
+        <!-- Result footer -->
+        <div style="background:#CC2222;border-radius:8px;padding:14px 16px;margin-bottom:10px;text-align:center;">
+          <div style="display:inline-block;border:1.5px solid rgba(255,255,255,0.5);border-radius:20px;padding:3px 12px;font-size:9px;color:rgba(255,255,255,0.85);font-weight:700;letter-spacing:.5px;margin-bottom:6px;">2 MEASURES (X2 SUBSIDY)</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.85);margin-bottom:4px;">Total subsidy amount:</div>
+          <div style="font-size:26px;font-weight:900;color:#ffffff;font-family:'Nunito',sans-serif;">€ 1,560.00</div>
+        </div>
+
+        <!-- CTA buttons from existing component -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <button style="background:#CC2222;color:white;border:none;border-radius:8px;padding:11px 8px;font-size:10px;font-weight:700;font-family:'Nunito',sans-serif;">Let us apply for your subsidy</button>
+          <button style="background:#CC2222;color:white;border:none;border-radius:8px;padding:11px 8px;font-size:10px;font-weight:700;font-family:'Nunito',sans-serif;">Free advice</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- ── WEBVIEW BOUNDARY END ── -->
+
+    <!-- ── KIOSK ADDITION: Local Subsidy link to Screen 13 ── -->
+    <div style="margin-top:10px;border:2px solid #555555;border-radius:10px;padding:12px 14px;background:#F0FAF0;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:#444444;margin-bottom:2px;">🏙️ Local &amp; Municipal Subsidies</div>
+        <div style="font-size:10px;color:#555;line-height:1.5;">Additional subsidies may be available in your city. Tap to find out more or speak to an advisor.</div>
+      </div>
+      <button class="wf-btn-primary" style="white-space:nowrap;font-size:11px;padding:9px 14px;flex-shrink:0;" onclick="show(13)">View Local →</button>
+    </div>
+    <div class="wf-annot-note" style="margin-top:6px;">↑ Green banner is kiosk addition — connects to Screen 13 (Local Subsidy Reference). Not part of existing subsidy calculator component.</div>
+
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="font-size:10px;color:#999;">National subsidy shown only · Local subsidy → Screen 13 (PRD §4.4.3)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 13 — LOCAL SUBSIDY REFERENCE
+═══════════════════════════════════════════ -->
+<div id="s13" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav">
+      <button class="wf-btn-ghost">← Back</button>
+      <button class="wf-btn-ghost">⌂ Home</button>
+    </div>
+  </div>
+  <div class="wf-content">
+    <div class="wf-breadcrumb">Home / Subsidies / <span>Local Subsidies</span></div>
+    <div class="wf-title" style="font-size:17px;margin-bottom:3px;">🏙️ Local Subsidies</div>
+    <div class="wf-subtitle" style="margin-bottom:10px;">Municipal subsidies are available in specific cities and can be exhausted quickly.</div>
+    <div class="wf-note-box">ℹ️ The kiosk does not display live local subsidy data due to the risk of outdated information. We refer you to the most up-to-date information.</div>
+    <div class="wf-divider"></div>
+    <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;">
+      <div class="wf-qr-box">[ QR Code ]<br><span style="font-size:8px;display:block;margin-top:4px;">Scan for local subsidies</span></div>
+      <div style="flex:1;">
+        <div class="wf-label" style="margin-bottom:5px;">Scan the QR code</div>
+        <div style="font-size:11px;color:#555;line-height:1.6;margin-bottom:8px;">Scan the QR code to view the most up-to-date information about municipal subsidies in your area on our website.</div>
+        <div style="font-size:10px;color:#888;font-style:italic;">woonwijzerwinkel.nl/local-subsidies</div>
+        <div class="wf-annot-note" style="margin-top:6px;">↑ QR visible only if city-specific subsidy pages are up-to-date on website (per Casper's clarification).</div>
+      </div>
+    </div>
+    <div class="wf-card" style="padding:12px 14px;background:#FFF8E0;border-color:#E0B030;">
+      <div class="wf-label" style="margin-bottom:5px;color:#7A6000;">💬 Ask an Advisor</div>
+      <div style="font-size:11px;color:#5A4800;line-height:1.6;">Do you have questions about local subsidies in your area? Our advisors are happy to help. Get in touch or request a free consultation.</div>
+    </div>
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <div style="display:flex;gap:8px;">
+      <button class="wf-btn-secondary">📞 Contact</button>
+      <button class="wf-btn-primary">📋 Request Quotation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 14 — CONTACT US FORM
+═══════════════════════════════════════════ -->
+<div id="s14" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav">
+      <button class="wf-btn-ghost">← Back</button>
+      <button class="wf-btn-ghost">⌂ Home</button>
+    </div>
+  </div>
+  <div class="wf-content">
+    <div class="wf-title" style="font-size:17px;margin-bottom:3px;">📞 Contact Us</div>
+    <div class="wf-subtitle" style="margin-bottom:12px;">Leave your details and we will contact you in your preferred way.</div>
+    <div class="wf-row">
+      <div class="wf-input-group">
+        <div class="wf-label">First Name *</div>
+        <div class="wf-input">[ First Name ]</div>
+      </div>
+      <div class="wf-input-group">
+        <div class="wf-label">Last Name *</div>
+        <div class="wf-input">[ Last Name ]</div>
+      </div>
+    </div>
+    <div class="wf-input-group">
+      <div class="wf-label">Email Address</div>
+      <div class="wf-input">[ name@email.com ]</div>
+    </div>
+    <div class="wf-input-group">
+      <div class="wf-label">Phone Number</div>
+      <div class="wf-input">[ 06-12345678 ]</div>
+    </div>
+    <div class="wf-label" style="margin-bottom:6px;">Preferred contact method *</div>
+    <div class="wf-radio-group" style="margin-bottom:12px;">
+      <div class="wf-radio selected">📞 Phone</div>
+      <div class="wf-radio">📧 Email</div>
+    </div>
+    <div class="wf-label" style="margin-bottom:5px;">Preferred date / time <span style="font-weight:400;color:#888;">(optioneel · OQ-12)</span></div>
+    <div class="wf-row">
+      <div class="wf-input-group">
+        <div class="wf-input">[ 📅 Pick a date ]</div>
+      </div>
+      <div class="wf-input-group">
+        <div class="wf-input">[ 🕐 Pick a time ]</div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:#888;margin-top:2px;">* Required fields · Data saved separately in CRM (in the lead table)</div>
+  </div>
+  <div class="wf-footer">
+    <button class="wf-btn-outline">← Back</button>
+    <button class="wf-btn-primary">✔ Submit</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 15 — CONTACT US SUCCESS
+═══════════════════════════════════════════ -->
+<div id="s15" class="screen-wrap">
+  <div class="wf-header">
+    <div class="wf-logo"><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:28px;height:22px;background:#CCCCCC;border-radius:4px;font-size:8px;color:#666;display:flex;align-items:center;justify-content:center;">⌂</span><span style="font-size:12px;font-weight:700;color:#444;letter-spacing:-.2px;">[ WWW Logo ]</span></span></div>
+    <div class="wf-nav"><button class="wf-btn-ghost">⌂ Home</button></div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:700px;padding:24px;text-align:center;">
+    <div class="wf-success-icon">✓</div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:22px;color:#1A2A1A;margin-bottom:8px;">Thank You for Your Interest!</div>
+    <div style="font-size:13px;color:#444;max-width:320px;line-height:1.7;margin-bottom:20px;">We have received your contact details. One of our advisors will get in touch with you as soon as possible via your preferred method.</div>
+    <div class="wf-card" style="width:100%;max-width:320px;padding:12px 14px;text-align:left;margin-bottom:16px;">
+      <div class="wf-label" style="margin-bottom:5px;">Your Preferences</div>
+      <div style="font-size:11px;color:#555;line-height:1.8;">
+        👤 Name: [First Last Name]<br>
+        📞 Preference: Phone<br>
+        📅 Preferred date: [date / time]
+      </div>
+    </div>
+    <button class="wf-btn-primary" style="margin-bottom:12px;">⌂ Return to Home Screen</button>
+    <div style="font-size:10px;color:#AAA;">Automatically returning in <strong>30</strong> seconds...</div>
+    <div class="wf-note-box" style="margin-top:14px;max-width:340px;text-align:left;">📌 Contact Us data saved to a separate CRM table — not in the lead table. Shown separately in CRM dashboard.</div>
+  </div>
+</div>
+
+</div><!-- /device-screen -->
+</div><!-- /device -->
+
+<!-- ─── ANNOTATION PANEL ─── -->
+<div class="annotations" id="ann-panel"></div>
+
+</div><!-- /kiosk-wrap -->
+</main>
+
+</div>
+
+</div>
+</div>
+
+<script>
+const annotations = {
+  1: {
+    title: "01 · Idle / Attract Screen",
+    notes: ["Full-screen attract content — video / looping banner / animation / image+text etc",  "Gradient overlays top & bottom — text readable on any video", "Tap anywhere → Screen 02 (Measurement Selection)", "PRD §5.3 · OQ-02"],
+    diff: "No difference between General & Category kiosk on idle screen.",
+    diffNotes: []
+  },
+  2: {
+    title: "02 · Measurement Selection",
+    notes: ["Mandatory pre-condition selecting measure before accessing any feature", "User must select at least one measurement type", "Continue button enabled only after measure selection", "Back returns to idle screen"],
+    diff: "We may not need to have this screen for category specific kiosk",
+    diffNotes: []
+  },
+  3: {
+    title: "03 · Main Feature Hub",
+    notes: ["Reached after measurement selection (Screen 02)", "Sole home of all 5 feature tiles — moved here from idle", "Tiles: Information, House Scan, Quotation, Subsidy, Contact Us", "Idle timeout returns to Screen 01"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  4: {
+    title: "04 · Information Landing",
+    notes: ["Entry point for Information section on General-Purpose Kiosk", "WHO WE ARE section: image + text + 4-step journey strip", "Category grid: 2-column, scrollable for 20+ categories", "PRD => 4.1.3 — General kiosk brand intro"],
+    diff: "General kiosk shows this screen. Category kiosk SKIPS this screen.",
+    diffNotes: ["Category kiosk lands directly on Screen 05 with its category pre-selected", "Annotated via OQ-04 — content provided by WWW team"]
+  },
+  5: {
+    title: "05 · Category Detail — Isoleren",
+    notes: ["Equal split: About This Category (top 50%) + Measurements (bottom 50%)", "Content format badge shows flexible format: Text + Image", "Breadcrumb: Home / Information / Isoleren", "PRD => 4.1"],
+    diff: "Same layout for all categories — only content differs.",
+    diffNotes: ["Content (text/image/video) provided by WWW team per category", "Measurement list pulled from CRM"]
+  },
+  6: {
+    title: "06 · Measurement Detail — Muurisolatie",
+    notes: ["Equal split: About This Measurement (top) + Brands (bottom)", "Content format: Text + Video example shown", "Brand cards: text only, no icons", "Model count shown as sub-label on each brand card", "PRD => 4.1 · OQ-07"],
+    diff: "Same layout for all measurements.",
+    diffNotes: ["Content format can vary per measurement: text / image / video / combo"]
+  },
+  7: {
+    title: "07 · Brand Detail — Brand A",
+    notes: ["Equal split: About This Brand (top) + Models (bottom)", "Content format: Text Only example shown", "Spec chips below brand description", "Model cards: entry / mid / premium / professional range labels", "PRD => 4.1 · OQ-07"],
+    diff: "Same layout for all brands.",
+    diffNotes: []
+  },
+  8: {
+    title: "08 · Model Detail — Model X1",
+    notes: ["Final level — no further drill-down", "Full content: image + text + optional video", "Key specifications grid (all are just samples)", "CTAs most prominent at this level — full-width buttons", "PRD => 4.1.4 Cross-tile CTA"],
+    diff: "Same layout for all models.",
+    diffNotes: ["Content format: Image + Text + Video (all combinations shown)", "Request Quotation + Contact Us CTAs are primary at this deepest level"]
+  },
+  9: {
+    title: "09 · House Scan Shell",
+    notes: ["Reused from existing CRM — no major UI changes (PRD §4.2)", "Kiosk wrapper preserves Back + Home navigation", "Back-end changes handled in separate sprint", "PRD =>4.2.2"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  10: {
+    title: "10 · Quotation Step 1 · Measurement",
+    notes: ["Multi-step quotation flow (PRD => 4.3)", "Measurement pre-selected from Screen 02 context", "Step bar: Measurement → Category → House → Contact", "Based on Isolatie form of Maassluis)"],
+    diff: "Category kiosk may pre-select category in Step 2.",
+    diffNotes: []
+  },
+  11: {
+    title: "11 · Quotation Step 2 · Category & Details",
+    notes: ["Category selection + additional details", "Quantity & upload sections removed (OQ-10)", "Remarks field present (OQ-10)", "PRD => 4.3.3"],
+    diff: "Category kiosk may pre-select its specific category here.",
+    diffNotes: []
+  },
+  12: {
+    title: "12 · Quotation Step 3 · House Information",
+    notes: ["House details: postcode, house number, type", "PRD => 4.3.3"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  13: {
+    title: "13 · Quotation Step 4 · Contact Information",
+    notes: ["Name, email, phone fields", "Remarks field (OQ-10 confirmed)", "Submit → CRM lead created", "PRD => 4.3.3 · => 6.1"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  14: {
+    title: "14 · Quotation Success",
+    notes: ["Thank-you confirmation after submission", "Auto-redirect to home after timeout", "PRD => 5.1"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  15: {
+    title: "15 · Subsidy Overview",
+    notes: ["National subsidy (ISDE) information only", "Subsidy calculator (2 categories confirmed — OQ-11)", "Static message: local subsidies available — speak to advisor", "PRD => 4.4"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  16: {
+    title: "16 · Local Subsidy Reference",
+    notes: ["No dynamic local subsidy data in kiosk (PRD => 4.4.3)", "QR code links to website city-specific pages", "Casper confirmed: city pages exist on website", "PRD => 4.4.3"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  17: {
+    title: "17 · Contact Us Form",
+    notes: ["Name, email/phone, preferred contact method", "Date/time picker tentative (OQ-12 pending WWW confirmation)", "Saved to separate CRM table — not lead table (OQ-12)", "PRD => 4.5"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  },
+  18: {
+    title: "18 · Contact Us Success",
+    notes: ["Confirmation after contact form submission", "Auto-redirect to home after timeout", "PRD => 5.1"],
+    diff: "Identical across both kiosk types.",
+    diffNotes: []
+  }
+}
+
+function show(n) {
+  document.querySelectorAll(".screen-wrap").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".screen-btn").forEach(b => b.classList.remove("active"));
+  const scr = document.getElementById("s" + n);
+  if (scr) scr.classList.add("active");
+  const btns = document.querySelectorAll(".screen-btn");
+  btns[n - 1].classList.add("active");
+  const a = annotations[n];
+  if (!a) return;
+  let html = `<div class="ann-card"><div class="ann-title">${a.title}</div><div class="ann-text"><ul>`;
+  a.notes.forEach(n => html += `<li>${n}</li>`);
+  html += `</ul></div></div>`;
+  html += `<div class="ann-diff"><div class="ann-title">🔀 General vs. Category Kiosk</div><div class="ann-text">${a.diff}`;
+  if (a.diffNotes.length) { html += `<ul style="margin-top:5px;">`; a.diffNotes.forEach(d => html += `<li>${d}</li>`); html += `</ul>`; }
+  html += `</div></div>`;
+  html += ``;
+  document.getElementById("ann-panel").innerHTML = html;
+}
+
+show(1);
+</script>
+</body>
+</html>
